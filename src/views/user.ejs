@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+<head>
+    <%- include('../partials/head') %> 
+</head>
+<body>
+
+    <header class="container mb-3">
+        <%- include('../partials/header',{title:'User Page'}) %> 
+    </header>
+
+    <main class="container">
+        <div class="mb-3">
+            <label class="form-label">First name</label>
+            <input type="text" class="form-control" value="<%= user.firstName %>" disabled>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Sur name</label>
+            <input type="text" class="form-control" value="<%= user.surName %>" disabled>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">E-mail address</label>
+            <input type="text" class="form-control" value="<%= user.email %>" disabled>
+        </div>
+
+        <% if(schedules) { %>
+
+            <h2 class="text-center mt-5 mb-4"> Schedules </h2>
+
+        <%}%>
+
+        <ul class="list-group"></ul>
+
+            <% for (schedule of schedules) { %>
+
+                <li class="list-group-item active d-flex justify-content-between" aria-current="true">
+                    <span>Day: <%= schedule.dayWeek %></span>
+                </li>
+                <li class="list-group-item">Start at: <%= schedule.startTime %></li>
+                <li class="list-group-item">Start at: <%= schedule.endTime %></li>
+
+            <%}%>
+
+        </ul>
+
+    </main>
+    
+    <footer>
+    </footer>
+</body>
+</html>
