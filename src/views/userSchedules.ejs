@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %> 
+</head>
+<body class="position-relative">
+
+    <header class="container mb-3">
+        <%- include('../partials/header',{title:'My Schedules'}) %> 
+    </header>
+
+    <main class="container">
+
+          <div>
+            <table class="table table-dark table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Day</th>
+                    <th scope="col">Start at</th>
+                    <th scope="col">End at</th>
+                    <th scope="col">action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <% schedules.forEach((element, index) => { %>
+
+                        <tr>
+                            <th scope="row">
+                                <%= index + 1%>
+                            </th>
+                            <td class="text-capitalize">
+                                <a href="/user/<%= element.ID %> ">
+                                  <%= element.firstName + ' ' + element.surName %>
+                                </a>
+                            </td>
+                            <td class="text-capitalize">
+                                <%= element.dayWeek %>
+                            </td>
+                            <td>
+                                <%= element.startTime %>
+                            </td>
+                            <td>
+                                <%= element.endTime %>
+                            </td>
+                            <td>
+                                <button class="btn btn-light" onclick="deleteSchedule(<%= element.ID %>)">
+                                  Delete
+                                </button>
+                            </td>
+                        </tr>
+
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+
+    </main>
+
+    <div class="toast-container position-absolute top-0 end-0 p-3">
+      <!-- Then put toasts within -->
+      <div id="message" class="toast bg-danger align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="d-flex">
+            <div class="toast-body text-white">
+              <%= message %> 
+           </div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+      </div>
+    </div>
+    
+    <footer>
+    </footer>
+    <%- include('../partials/scripts') %> 
+</body>
+</html>

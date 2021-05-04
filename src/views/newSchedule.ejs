@@ -43,6 +43,7 @@
             </div>
     
           </form>
+
     </main>
 
     <div class="toast-container position-absolute top-0 end-0 p-3">
@@ -59,26 +60,6 @@
     
     <footer>
     </footer>
+    <%- include('../partials/scripts') %> 
 </body>
-<script>
-  const option = 
-  {
-      animation: true,
-      delay: 5000
-  }
-
-  function toasty() {
-      const toastHTMLElement = document.getElementById("message");
-
-      const toastElement = new bootstrap.Toast( toastHTMLElement, option );
-
-      toastElement.show()
-
-  }
-
-  <% if(toast) { %>
-      toasty()
-  <% } %>
-  
-</script>
 </html>

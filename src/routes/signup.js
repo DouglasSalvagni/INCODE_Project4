@@ -4,6 +4,7 @@ const connection = require('../../config/dbConnection');
 const { getHashedPassword, generateAuthToken } = require('../utils/crypto');
 const authTokens = require('../storedTokens');
 const { body, validationResult } = require('express-validator');
+const { capitalize } = require('../utils/utils');
 
 router.get("/", (req, res) => {
     res.render('signup', {message:"", toast: false, firstName: "", surName:"", email:""})
@@ -37,9 +38,9 @@ router.post(
             const hashedPassword = getHashedPassword(password);
 
             const newUser = {
-                firstName,
-                surName,
-                email,
+                firstName:capitalize(firstName.toLowerCase()),
+                surName:capitalize(surName.toLowerCase()),
+                email: email,
                 password: hashedPassword
             }
 
@@ -57,6 +58,8 @@ router.post(
 
                 // Setting the auth token in cookies
                 res.cookie('AuthToken', authToken);
+
+                // Send email
 
                 // Redirect user to the protected page
                 return res.redirect('/');

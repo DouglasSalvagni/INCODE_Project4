@@ -27,7 +27,7 @@ router.get('/:userId', verifyToken, (req, res) => {
                 formatedSchedules.push(formatedRow);
             });
 
-            return res.render('user', {user: response[0], schedules: formatedSchedules});
+            return res.render('user', {user: response[0], schedules: formatedSchedules, toast: false});
 
         })
 
